@@ -1,6 +1,6 @@
 <div align="center">
 
-  ![logo](https://github.com/eshinhw/financial-data-crawler/assets/41933169/4ef99575-98f0-4484-b61a-2b3131d79e8a)
+  ![logo](https://github.com/eshinhw/financial-data-crawler/assets/41933169/82a0940b-697c-4a29-9dc5-e26756720e15)
 
 </div>
 
