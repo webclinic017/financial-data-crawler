@@ -45,3 +45,7 @@ deactivate
 **Important**: Remember to add venv to your project's `.gitignore` file so you don't include all of that in your source code.
 
 It is preferable to install big packages (like Numpy or Pandas), or packages you always use (like IPython) globally. All the rest can be installed in a `virtualenv`.
+
+## Data Sources
+
+- [Yahoo Finance](finance.yahoo.com)
