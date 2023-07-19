@@ -13,6 +13,11 @@
   
 </div>
 
+## Available Data
+
+- Global Stock Tickers from [Investing.com](investing.com)
+- Global Stocks' Financial Statement Data
+
 ## Project Setup
 
 ### Virtual Environment Setup
@@ -46,6 +51,4 @@ deactivate
 
 It is preferable to install big packages (like Numpy or Pandas), or packages you always use (like IPython) globally. All the rest can be installed in a `virtualenv`.
 
-## Data Sources
 
-- [Yahoo Finance](finance.yahoo.com)
