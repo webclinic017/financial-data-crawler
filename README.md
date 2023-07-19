@@ -14,8 +14,9 @@
 
 ## Available Data
 
-- Global Stock Tickers (Source: [Investing.com](investing.com))
-- Financial Statement Data (Source: "")
+- Global Stock Tickers
+- Financial Statement Data
+- News Headlines
 
 ## Project Setup
 
