@@ -3,3 +3,4 @@
 **/.vscode
 **/.spyproject
 database.ini
+__pycache__
