@@ -50,6 +50,8 @@ deactivate
 
 ## Database Setup
 
+The project primarily uses Postgresql DB. `CONN_STRING` can be updated to corresponding databases.
+
 If running the project locally, local DB setup should be completed in `database.ini`.
 
-Run `python tickers.py` to retrieve US ticker data and store them inside the local database set up above.
+Run `get_us_tickers_data()` in `python tickers.py` to retrieve US ticker data and store them inside the local database set up above.
