@@ -37,6 +37,8 @@ def get_us_tickers_data():
 
     """
 
+    DB_TABLE_NAME = "us_tickers_kr"
+
     market = ["nyse", "nasdaq", "amex"]
 
     stocks = []
@@ -70,8 +72,9 @@ def get_us_tickers_data():
 
     stock_bind_select = stock_bind[["Name", "Symbol", "Exchange", "Sector", "MarketCap", "Date"]]
 
-    stock_bind_select.to_sql("us_tickers_kr", con=ENGINE.connect(), if_exists="replace", index=False)
+    stock_bind_select.to_sql(DB_TABLE_NAME, con=ENGINE.connect(), if_exists="replace", index=False)
 
 
 if __name__ == "__main__":
+    # update US ticker data
     get_us_tickers_data()
