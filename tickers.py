@@ -1,23 +1,35 @@
-import json
-import requests as rq
-import pandas as pd
-import pymysql
-import time
 import datetime as dt
+import json
+import math
+import time
+
+import pandas as pd
+import psycopg2
+import requests as rq
+from bs4 import BeautifulSoup
 
 # from investing.com
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
-import math
+from sqlalchemy import create_engine
 from tqdm import tqdm
+from webdriver_manager.chrome import ChromeDriverManager
+
+#!/usr/bin/python
+from config import config
+
+params = config()
+
+CONN_STRING = (
+    f"postgresql://{params['user']}:{params['password']}@{params['host']}:{params['port']}/{params['database']}"
+)
+ENGINE = create_engine(CONN_STRING)
 
 
-def get_us_ticker_data():
+def get_us_tickers_data():
     """
-    Retrieves US ticker data from hankyung.com.
+    Retrieves US ticker data from hankyung.com and stores them in local Postgresql DB.
 
     Returns
     -------
@@ -52,30 +64,14 @@ def get_us_ticker_data():
             "hname": "Name",
             "primary_exchange_name": "Exchange",
             "sector_nm": "Sector",
-            "industry_nm": "Industry",
-            "market_cap": "Market Cap",
+            "market_cap": "MarketCap",
         }
     )
 
-    stock_bind_select = stock_bind[["Name", "Symbol", "Exchange", "Sector", "Industry", "Market Cap", "Date"]]
+    stock_bind_select = stock_bind[["Name", "Symbol", "Exchange", "Sector", "MarketCap", "Date"]]
 
-    con = pymysql.connect(user="root", passwd="mysql123", host="127.0.0.1", db="equities", charset="utf8")
-
-    mycursor = con.cursor()
-
-    query = """
-        insert into us_tickers_kr (Name, Symbol, Exchange, Sector, Industry, `Market Cap`, Date)
-        values (%s,%s,%s,%s,%s,%s,%s) as new
-        on duplicate key update
-        Exchange=new.Exchange, Sector=new.Sector, Industry=new.Industry, `Market Cap`=new.`Market Cap`;
-    """
-
-    args = stock_bind_select.values.tolist()
-
-    mycursor.executemany(query, args)
-    con.commit()
-
-    con.close()
+    stock_bind_select.to_sql("us_tickers_kr", con=ENGINE.connect(), if_exists="replace", index=False)
 
 
-get_us_ticker_data()
+if __name__ == "__main__":
+    get_us_tickers_data()
