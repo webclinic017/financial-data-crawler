@@ -46,7 +46,7 @@ Deactivate the virtual environment.
 deactivate
 ```
 
-**Important**: Remember to add venv to your project's `.gitignore` file so you don't include all of that in your source code.
+**Important**: Remember to add `venv` to your project's `.gitignore` file.
 
 ## Database Setup
 
