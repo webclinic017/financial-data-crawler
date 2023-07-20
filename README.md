@@ -12,15 +12,14 @@
 
 </div>
 
-## Available Data
+# Available Data
 
 - Global Stock Tickers
-- Financial Statement Data
-- News Headlines
+  - USA: NYSE, NASDAQ, AMEX
 
-## Project Setup
+# Project Development Setup
 
-### Virtual Environment Setup
+## Virtual Environment Setup
 
 Install `virtualenv` if not installed in your machine.
 
@@ -49,4 +48,8 @@ deactivate
 
 **Important**: Remember to add venv to your project's `.gitignore` file so you don't include all of that in your source code.
 
-It is preferable to install big packages (like Numpy or Pandas), or packages you always use (like IPython) globally. All the rest can be installed in a `virtualenv`.
+## Database Setup
+
+If running the project locally, local DB setup should be completed in `database.ini`.
+
+Run `python tickers.py` to retrieve US ticker data and store them inside the local database set up above.
