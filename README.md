@@ -12,14 +12,17 @@
 
 </div>
 
-# Available Data
+## Datasets
 
 - Global Stock Tickers
-  - USA: NYSE, NASDAQ, AMEX
+  - NYSE (USA)
+  - NASDAQ (USA)
+  - AMEX (USA)
+ 
 
-# Project Development Setup
+## Project Development Setup
 
-## Virtual Environment Setup
+### Virtual Environment Setup
 
 Install `virtualenv` if not installed in your machine.
 
@@ -48,7 +51,7 @@ deactivate
 
 **Important**: Remember to add `venv` to your project's `.gitignore` file.
 
-## Database Setup
+### Database Setup
 
 The project primarily uses Postgresql DB. `CONN_STRING` can be updated to corresponding databases.
 
