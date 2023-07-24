@@ -75,6 +75,30 @@ def get_us_tickers_data():
     stock_bind_select.to_sql(DB_TABLE_NAME, con=ENGINE.connect(), if_exists="replace", index=False)
 
 
+def get_sp500_tickers():
+    # Read and print the stock tickers that make up S&P500
+    tickers = pd.read_html("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies")[0]
+    print(tickers.head())
+
+    DB_TABLE_NAME = "sp500_tickers"
+
+    tickers["Date"] = dt.datetime.today().strftime("%Y-%m-%d")
+    tickers_select = tickers[["Symbol", "Security", "GICS Sector", "Date added", "Date"]]
+    tickers_select.to_sql(DB_TABLE_NAME, con=ENGINE.connect(), if_exists="replace", index=False)
+
+
+def get_nasdaq100_tickers():
+    tickers = pd.read_html("https://en.wikipedia.org/wiki/Nasdaq-100")[4]
+
+    DB_TABLE_NAME = "nasdaq100_tickers"
+
+    tickers["Date"] = dt.datetime.today().strftime("%Y-%m-%d")
+    tickers_select = tickers[["Ticker", "Company", "GICS Sector", "GICS Sub-Industry", "Date"]]
+    tickers_select.to_sql(DB_TABLE_NAME, con=ENGINE.connect(), if_exists="replace", index=False)
+
+
 if __name__ == "__main__":
     # update US ticker data
-    get_us_tickers_data()
+    # get_us_tickers_data()
+    # get_sp500_tickers()
+    get_nasdaq100_tickers()
