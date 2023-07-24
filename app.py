@@ -2,9 +2,13 @@ from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
 from sqlalchemy import create_engine
+from config import config
 
+params = config()
 
-CONN_STRING = "postgresql://postgres:postgresql123@localhost:5432/stocks"
+CONN_STRING = (
+    f"postgresql://{params['user']}:{params['password']}@{params['host']}:{params['port']}/{params['database']}"
+)
 ENGINE = create_engine(CONN_STRING)
 
 app = Dash(__name__)
@@ -20,7 +24,7 @@ app.layout = html.Div(
                         html.Li(children="United States (NYSE, NASDAQ, Amex)"),
                         html.Button("CSV", id="us-csv-btn", style={"cursor": "pointer"}),
                         dcc.Download(id="download-df-csv"),
-                        html.Button("Excel", id="us-excel-btn"),
+                        html.Button("Excel", id="us-excel-btn", style={"cursor": "pointer"}),
                         dcc.Download(id="download-df-excel"),
                     ],
                     style={
@@ -34,7 +38,7 @@ app.layout = html.Div(
             ],
             style={},
         ),
-        html.H2(children="Financial News Headlines"),
+        html.H2(children="Financial Satements Data"),
     ]
 )
 
