@@ -19,6 +19,11 @@
   - NASDAQ (USA)
   - AMEX (USA)
  
+## How to Run
+
+1. Run `pip install requirements.txt` to install required packages.
+2. Run `python app.py` to start the dash app.
+3. Download available datasets in multiple file formats (CSV, Excel, JSON...)
 
 ## Project Development Setup
 
