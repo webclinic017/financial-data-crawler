@@ -12,19 +12,13 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from sqlalchemy import create_engine
+
 from tqdm import tqdm
 from webdriver_manager.chrome import ChromeDriverManager
+from db import create_db_engine
 
-#!/usr/bin/python
-from config import config
-
-params = config()
-
-CONN_STRING = (
-    f"postgresql://{params['user']}:{params['password']}@{params['host']}:{params['port']}/{params['database']}"
-)
-ENGINE = create_engine(CONN_STRING)
+# initialize local DB engine for READ and WRITE
+ENGINE = create_db_engine()
 
 
 def get_us_tickers_data():

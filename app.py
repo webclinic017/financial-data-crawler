@@ -1,15 +1,11 @@
 from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
-from sqlalchemy import create_engine
-from config import config
 
-params = config()
+from db import create_db_engine
 
-CONN_STRING = (
-    f"postgresql://{params['user']}:{params['password']}@{params['host']}:{params['port']}/{params['database']}"
-)
-ENGINE = create_engine(CONN_STRING)
+# initialize local DB engine for READ and WRITE
+ENGINE = create_db_engine()
 
 app = Dash(__name__)
 
